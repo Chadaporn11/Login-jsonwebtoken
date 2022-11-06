@@ -2,3 +2,5 @@ backend:
 npm init -y
 npm i express body-parser mongoose cors morgan jsonwebtoken nodemon dotenv
 //cor = request api
+
+forntend:
