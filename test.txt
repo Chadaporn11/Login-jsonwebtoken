@@ -1,6 +1,6 @@
 backend:
 npm init -y
-npm i express body-parser mongoose cors morgan jsonwebtoken nodemon dotenv
+npm i express body-parser mongoose cors morgan jsonwebtoken bcryptjs nodemon dotenv
 //cor = request api
 //dotenv = file keep path value ~ when deploy edit one point
 
