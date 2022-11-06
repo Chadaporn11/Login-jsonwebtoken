@@ -10,6 +10,9 @@ const {
     deleteUser 
 } = require('../controllers/auth');
 
+//Middleware
+const { auth } = require('../middleware/auth');
+
 
 //End point http://localhost:3000/api/register
 //Method: POST
@@ -20,6 +23,10 @@ router.post('/register',register);
 //Method: POST
 //Access: public
 router.post('/login',login);
+
+router.get('/1',auth,(req, res) => {
+    res.send('hello 1')
+})
 
 
 //End point http://localhost:3000/api/auth
