@@ -2,16 +2,30 @@ const express = require('express');
 const router = express.Router();
 
 //controller
-const { register,listUser,editUser,deleteUser } = require('../controllers/auth');
+const { 
+    register,
+    login,
+    listUser,
+    editUser,
+    deleteUser 
+} = require('../controllers/auth');
+
+
+//End point http://localhost:3000/api/register
+//Method: POST
+//Access: public
+router.post('/register',register);
+
+//End point http://localhost:3000/api/login
+//Method: POST
+//Access: public
+router.post('/login',login);
+
 
 //End point http://localhost:3000/api/auth
 //Method: GET
 //Access: public
 router.get('/auth',listUser)
-
-//Method: POST
-//Access: public
-router.post('/auth',register);
 
 //Method: PUT
 //Access: public
