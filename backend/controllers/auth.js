@@ -23,7 +23,6 @@ exports.register = async(req,res)=>{
         await user.save();
         res.send('register success');
 
-
     }catch(err){
         console.log(err)
         res.status(500).send('Server error: ' + err.message);

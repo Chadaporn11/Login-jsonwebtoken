@@ -14,12 +14,12 @@ const {
 const { auth } = require('../middleware/auth');
 
 
-//End point http://localhost:3000/api/register
+//End point http://localhost:4200/api/register
 //Method: POST
 //Access: public
 router.post('/register',register);
 
-//End point http://localhost:3000/api/login
+//End point http://localhost:4200/api/login
 //Method: POST
 //Access: public
 router.post('/login',login);
@@ -29,7 +29,7 @@ router.get('/1',auth,(req, res) => {
 })
 
 
-//End point http://localhost:3000/api/auth
+//End point http://localhost:4200/api/auth
 //Method: GET
 //Access: public
 router.get('/auth',listUser)

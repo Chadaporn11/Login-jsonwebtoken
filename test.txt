@@ -5,3 +5,11 @@ npm i express body-parser mongoose cors morgan jsonwebtoken bcryptjs nodemon dot
 //dotenv = file keep path value ~ when deploy edit one point
 
 forntend:
+npx create-react-app frontend
+npm i axios react-router-dom redux react-redux redux-devtools-extension react-toastify moment react-moment
+
+//axios = request api
+//react-router-dom = click link
+//redux = can help keep state
+//react-toastify = แจ้งเตือน
+//moment react-moment = management Date
