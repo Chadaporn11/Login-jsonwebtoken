@@ -13,3 +13,6 @@ npm i axios react-router-dom redux react-redux redux-devtools-extension react-to
 //redux = can help keep state
 //react-toastify = แจ้งเตือน
 //moment react-moment = management Date
+
+npm i antd
+npm i react-toastify
