@@ -23,7 +23,7 @@ const Register = () => {
       toast.error("Password not match");
     } else {
       //code
-        register(value)
+      register(value)
         .then((response) => {
           console.log(response);
           console.log(response.data);
