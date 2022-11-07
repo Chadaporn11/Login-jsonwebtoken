@@ -1,7 +1,7 @@
 export function userReducer(state=null, action){
     switch(action.type){
         case 'LOGIN':
-            return "login 555";
+            return action.payload;
         case 'LOGOUT':
             return "logout 555";
         default:
