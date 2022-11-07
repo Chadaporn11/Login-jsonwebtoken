@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 import Register from './components/pages/auth/Register';
 import Login from './components/pages/auth/Login';
 import Navbar from './components/layouts/Navbar';
@@ -7,9 +9,35 @@ import Home from './components/pages/Home';
 
 import HomeAdmin from './components/pages/admin/Home';
 import HomeUser from './components/pages/user/Home';
+import { currentUser } from './components/functions/auth';
 
+//redux
+import { useDispatch } from 'react-redux';
 
 function App() {
+  
+  const idtoken = localStorage.token;
+  const dispatch = useDispatch();
+
+  if(idtoken){
+    currentUser(idtoken)
+    .then(res =>{
+      //code
+      console.log(res.data);
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          token: idtoken,
+          username: res.data.username,
+          role: res.data.role,
+        },
+      });
+    }).catch(err => {
+      //err
+      console.log(err);
+    }); 
+  }
+
   return (
     <div className="App">
       <Navbar/>

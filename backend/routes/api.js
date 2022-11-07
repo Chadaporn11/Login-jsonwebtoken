@@ -7,7 +7,8 @@ const {
     login,
     listUser,
     editUser,
-    deleteUser 
+    deleteUser,
+    currentUser 
 } = require('../controllers/auth');
 
 //Middleware
@@ -23,6 +24,12 @@ router.post('/register',register);
 //Method: POST
 //Access: public
 router.post('/login',login);
+
+//End point http://localhost:4200/api/current-user
+//Method: POST
+//Access: private
+router.post('/current-user', auth, currentUser);
+
 
 router.get('/1',auth,(req, res) => {
     res.send('hello 1')
