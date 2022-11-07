@@ -1,31 +1,37 @@
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+//import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-const items = [
-    {
-        label: <Link to="/login">Login</Link>,
-        key: 'mail',
-        icon: <MailOutlined />,
-    },
-    {
-        label: <Link to="/register">Register</Link>,
-        key: 'app',
-        icon: <AppstoreOutlined />,
-    },
-];
 
 const Navbar = () => {
 
-    const [current, setCurrent] = useState('mail');
-    const onClick = (e) => {
-        console.log('click ', e);
-        setCurrent(e.key);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const logout = () => {
+        dispatch({
+            type: 'LOGOUT',
+            payload: null,
+        });
+        navigate('/');
     };
 
     return (
-        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+        <Menu mode="horizontal" defaultSelectedKeys={['mail']}>
+            <Menu.Item key="login" icon={<MailOutlined />}>
+                <Link to="/login">Login</Link>
+            </Menu.Item>
+            <Menu.Item key="register" icon={<SettingOutlined />}>
+                <Link to="/register">Register</Link>
+            </Menu.Item>
+            <Menu.Item key="logout" onClick={logout} icon={<AppstoreOutlined />}>
+                Logout
+            </Menu.Item>
+
+        </Menu>
     )
 }
 

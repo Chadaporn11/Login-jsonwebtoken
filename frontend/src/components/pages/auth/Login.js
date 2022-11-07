@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 import { login } from '../../functions/auth';
 //redux
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
 
   const [value, setValue] = useState({
     username: "",
-    password: ""
+    password: "",
   })
 
   const roleBaseRedirect = (role) => {
@@ -32,23 +31,23 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(value)
-      .then((response) => {
-        console.log(response.data);
-        toast.success(response.data);
+      .then((res) => {
+        console.log(res.data);
+        toast.success(res.data);
         dispatch({
           type: 'LOGIN',
           payload: {
-            token: response.data.token,
-            username: response.data.payload.user.username,
-            role: response.data.payload.user.role,
+            token: res.data.token,
+            username: res.data.payload.user.username,
+            role: res.data.payload.user.role,
           },
         });
-        localStorage.setItem('token',response.data.token);
-        roleBaseRedirect(response.data.payload.user.role);
+        localStorage.setItem('token',res.data.token);
+        roleBaseRedirect(res.data.payload.user.role);
         
       }).catch((err) => {
-        console.log(err.response.data);
-        toast.error(err.response.data);
+        console.log(err.res.data);
+        toast.error(err.res.data);
       });
 
   };
