@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // pages admin
 import HomeAdmin from './components/pages/admin/Home';
+import ManageAdmin from "./components/pages/admin/ManageAdmin";
 
 // pages user
 import HomeUser from './components/pages/user/Home';
@@ -63,6 +64,11 @@ function App() {
         <Route path="/admin/index" element={
           <AdminRoute>
             <HomeAdmin />
+          </AdminRoute>
+        } />
+        <Route path="/admin/manage-admin" element={
+          <AdminRoute>
+            <ManageAdmin/>
           </AdminRoute>
         } />
         <Route path="/user/index" element={

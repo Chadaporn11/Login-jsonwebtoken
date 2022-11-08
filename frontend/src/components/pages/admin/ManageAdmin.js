@@ -1,7 +1,7 @@
-import React from 'react'
-import MenubarAdmin from '../../layouts/MenubarAdmin'
+import React from 'react';
+import MenubarAdmin from '../../layouts/MenubarAdmin';
 
-const Home = () => {
+const ManageAdmin = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
@@ -9,11 +9,11 @@ const Home = () => {
           <MenubarAdmin />
         </div>
         <div className='col'>
-          <h1>Home Admin</h1>
+          <h1>Manage Admin</h1>
         </div>
       </div>
     </div>
   )
 }
 
-export default Home;
+export default ManageAdmin;
