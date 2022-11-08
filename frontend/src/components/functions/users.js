@@ -29,3 +29,13 @@ export const listUser = async (authtoken) => {
       }
     );
   }
+
+  export const removeUser = async (authtoken, id) => {
+    return await axios.delete("http://localhost:4200/api/users/"+id,
+      {
+        headers: {
+          authtoken,
+        },
+      }
+    );
+  }
