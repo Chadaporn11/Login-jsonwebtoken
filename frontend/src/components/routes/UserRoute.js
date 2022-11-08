@@ -1,15 +1,14 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import LoadingToRedirect from './LoadingToRedirect';
 
 const UserRoute = ({children}) => {
-
     const { user } = useSelector((state)=> ({...state}))
-    console.log('useRoute', children);
+    console.log('userRoute',children)
 
-  return user && user.token
-  ? children
-  : <LoadingToRedirect/>
+    return user && user.token 
+    ? children
+    : <LoadingToRedirect />
 }
 
-export default UserRoute
+export default UserRoute;

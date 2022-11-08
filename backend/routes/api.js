@@ -8,11 +8,11 @@ const {
     listUser,
     editUser,
     deleteUser,
-    currentUser 
+    currentUser, 
 } = require('../controllers/auth');
 
 //Middleware
-const { auth } = require('../middleware/auth');
+const { auth, adminCheck } = require('../middleware/auth');
 
 
 //End point http://localhost:4200/api/register
@@ -29,6 +29,11 @@ router.post('/login',login);
 //Method: POST
 //Access: private
 router.post('/current-user', auth, currentUser);
+
+//End point http://localhost:4200/api/current-admin
+//Method: POST
+//Access: private
+router.post('/current-admin', auth, adminCheck, currentUser);
 
 
 router.get('/1',auth,(req, res) => {
