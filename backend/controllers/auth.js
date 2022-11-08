@@ -78,6 +78,7 @@ exports.currentUser = async (req, res) => {
     }
 }
 
+
 exports.listUser = async (req, res) => {
     try {
         res.send('list GET User');

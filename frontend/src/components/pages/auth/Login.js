@@ -31,23 +31,23 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(value)
-      .then((res) => {
-        console.log(res.data);
-        toast.success(res.data);
+      .then((response) => {
+        console.log(response.data);
+        toast.success(response.data);
         dispatch({
           type: 'LOGIN',
           payload: {
-            token: res.data.token,
-            username: res.data.payload.user.username,
-            role: res.data.payload.user.role,
+            token: response.data.token,
+            username: response.data.payload.user.username,
+            role: response.data.payload.user.role,
           },
         });
-        localStorage.setItem('token',res.data.token);
-        roleBaseRedirect(res.data.payload.user.role);
+        localStorage.setItem('token',response.data.token);
+        roleBaseRedirect(response.data.payload.user.role);
         
       }).catch((err) => {
-        console.log(err.res.data);
-        toast.error(err.res.data);
+        console.log(err.response.data);
+        toast.error(err.response.data);
       });
 
   };
@@ -66,4 +66,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
+// Page
+import Home from './components/pages/Home';
 import Register from './components/pages/auth/Register';
 import Login from './components/pages/auth/Login';
+// Layout
 import Navbar from './components/layouts/Navbar';
 
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/pages/Home';
 
+// pages admin
 import HomeAdmin from './components/pages/admin/Home';
+
+// pages user
 import HomeUser from './components/pages/user/Home';
-import { currentUser } from './components/functions/auth';
+
+// functions
+import { currentUser } from "./components/functions/auth";
+
+// Routes
+import UserRoute from './components/routes/UserRoute';
+import AdminRoute from "./components/routes/AdminRoute";
+
 
 //redux
 import { useDispatch } from 'react-redux';
 
-//Route
-import UserRoute from './components/routes/UserRoute';
+
 
 function App() {
 
@@ -49,7 +60,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/index" element={<HomeAdmin />} />
+        <Route path="/admin/index" element={
+          <AdminRoute>
+            <HomeAdmin />
+          </AdminRoute>
+        } />
         <Route path="/user/index" element={
           <UserRoute>
             <HomeUser />
