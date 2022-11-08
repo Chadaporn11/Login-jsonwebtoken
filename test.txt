@@ -16,4 +16,7 @@ npm i axios react-router-dom redux react-redux redux-devtools-extension react-to
 
 npm i antd
 npm i react-toastify
-ok
+
+/*more*/
+npm i bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
