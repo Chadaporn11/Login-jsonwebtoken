@@ -19,3 +19,13 @@ export const listUser = async (authtoken) => {
       }
     );
   }
+
+  export const changeRole = async (authtoken, value) => {
+    return await axios.post("http://localhost:4200/api/change-role", value,
+      {
+        headers: {
+          authtoken,
+        },
+      }
+    );
+  }
