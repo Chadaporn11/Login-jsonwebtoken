@@ -1,36 +1,52 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import MenubarAdmin from '../../layouts/MenubarAdmin';
 import { useSelector } from 'react-redux';
+import { Switch } from 'antd';
+
 
 //function
-import { listUser } from '../../functions/users';
+import { listUser, changeStatus } from '../../functions/users';
 
 
 const ManageAdmin = () => {
 
-    const { user } = useSelector((state) => ({...state}));
-    const [ data, setData ] = useState([]);
+    const { user } = useSelector((state) => ({ ...state }));
+    const [data, setData] = useState([]);
 
-    const loaddata = (authtoken) => {
+    const loadData = (authtoken) => {
         //code
         listUser(authtoken)
-        .then(res => {
-            setData(res.data);
+            .then(res => {
+                setData(res.data);
 
-        }).catch(err =>{
-            console.log(err.response.data);
+            }).catch(err => {
+                console.log(err.response.data);
 
-        });
+            });
     }
 
-    console.log(data);
+    const handleOnChange = (e, id) => {
+        const value = {
+            id: id,
+            enabled: e,
+        }
+        changeStatus(user.token, value)
+            .then(res => {
+                console.log(res);
+                loadData(user.token);
+
+            }).catch(err => {
+                console.log(err.response);
+
+            });
+    };
 
 
-    useEffect(()=> {
+    useEffect(() => {
         //code
-        loaddata(user.token);
+        loadData(user.token);
 
-    },[]);
+    }, []);
 
 
     return (
@@ -54,13 +70,14 @@ const ManageAdmin = () => {
                         </thead>
                         <tbody>
                             {data.map((item, index) => (
-                            <tr>
-                                <th scope="row">{item.username}</th>
-                                <td>{item.role}</td>
-                                <td>{item.enable}</td>
-                                <td>{item.createdAt}</td>
-                                <td>{item.updatedAt}</td>
-                            </tr>
+                                <tr>
+                                    <th scope="row">{item.username}</th>
+                                    <td>{item.role}</td>
+                                    <td>{item.enabled}
+                                        <Switch checked={item.enabled} onChange={(e) => handleOnChange(e, item._id)} /></td>
+                                    <td>{item.createdAt}</td>
+                                    <td>{item.updatedAt}</td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>

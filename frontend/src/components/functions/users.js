@@ -9,3 +9,13 @@ export const listUser = async (authtoken) => {
       }
     );
   }
+
+  export const changeStatus = async (authtoken, value) => {
+    return await axios.post("http://localhost:4200/api/change-status", value,
+      {
+        headers: {
+          authtoken,
+        },
+      }
+    );
+  }
