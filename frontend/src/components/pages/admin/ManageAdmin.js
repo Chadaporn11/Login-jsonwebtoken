@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MenubarAdmin from '../../layouts/MenubarAdmin';
 import { useSelector } from 'react-redux';
-import { Switch, Select, Tag } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Switch, Select, Tag, Modal } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import moment from 'moment/min/moment-with-locales';
 
 
@@ -11,7 +11,8 @@ import {
     listUser,
     changeStatus,
     changeRole,
-    removeUser
+    removeUser,
+    resetPassword
 } from '../../functions/users';
 
 
@@ -20,6 +21,41 @@ const ManageAdmin = () => {
     const { user } = useSelector((state) => ({ ...state }));
     const [data, setData] = useState([]);
     const roleData = ['admin', 'user'];
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [value, setValue] = useState({
+        id: "",
+        password: "",
+    });
+
+    const showModal = (id) => {
+        setIsModalOpen(true);
+        setValue({ ...value, id: id, });
+
+    };
+
+    const handleChangePassword = (e) => {
+        console.log(e.target.name);
+        console.log(e.target.value);
+        setValue({ ...value, [e.target.name]: e.target.value })
+    }
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+        console.log(value);
+        resetPassword(user.token, value.id, {value})
+            .then(res => {
+                console.log(res);
+                loadData(user.token);
+
+            }).catch(err => {
+                console.log(err.response);
+
+            });
+
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     const loadData = (authtoken) => {
         //code
@@ -137,12 +173,19 @@ const ManageAdmin = () => {
                                         <Switch checked={item.enabled} onChange={(e) => handleOnChange(e, item._id)} /></td>
                                     <td>{moment(item.createdAt).locale('th').format('LLL')}</td>
                                     <td>{moment(item.updatedAt).locale('th').startOf(item.updatedAt).fromNow()}</td>
-                                    <td><DeleteOutlined onClick={() => handleRemove(item._id)} /></td>
+                                    <td>
+                                        <DeleteOutlined onClick={() => handleRemove(item._id)} />
+                                        <EditOutlined onClick={() => showModal(item._id)} />
+                                    </td>
 
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                        <p>New password:</p>
+                        <input type="text" name="password" onChange={handleChangePassword} />
+                    </Modal>
                 </div>
             </div>
         </div>

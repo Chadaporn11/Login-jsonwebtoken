@@ -31,6 +31,16 @@ exports.readUsers = async (req, res) => {
 exports.updateUsers = async (req, res) => {
     try {
         // Check user
+        console.log(req.body.value);
+        var {id, password} = req.body.value;
+        // 1 genSalt
+        const salt = await bcrypt.genSalt(10);
+        // 2 encrypt
+        var enPassword = await bcrypt.hash(password, salt);
+        const user = await User.findOneAndUpdate(
+            {_id:id},
+            {password: enPassword}
+            );
         res.send(user);
 
     } catch (err) {
