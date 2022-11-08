@@ -36,24 +36,4 @@ router.post('/current-user', auth, currentUser);
 router.post('/current-admin', auth, adminCheck, currentUser);
 
 
-router.get('/1',auth,(req, res) => {
-    res.send('hello 1')
-})
-
-
-//End point http://localhost:4200/api/auth
-//Method: GET
-//Access: public
-router.get('/auth',listUser)
-
-//Method: PUT
-//Access: public
-router.put('/auth',editUser);
-
-//Method: DELETE
-//Access: public
-router.delete('/auth',deleteUser)
-
-
-
-module.exports = router
+module.exports = router;
