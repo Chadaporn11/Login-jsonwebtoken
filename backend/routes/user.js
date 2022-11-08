@@ -7,7 +7,8 @@ const {
     readUsers,
     updateUsers,
     removeUsers,
-    changeStatus
+    changeStatus,
+    changeRole
 
 } = require('../controllers/user');
 
@@ -25,6 +26,11 @@ router.get('/users',auth, adminCheck, listUsers);
 //Method: POST
 //Access: private
 router.post('/change-status',auth, adminCheck, changeStatus);
+
+//End point http://localhost:4200/api/change-role
+//Method: POST
+//Access: private
+router.post('/change-role',auth, adminCheck, changeRole);
 
 //End point http://localhost:4200/api/users/:id
 //Method: GET
