@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MenubarAdmin = () => {
+    
     return (
         <nav>
             <ul className='nav flex-column'>
@@ -16,4 +17,4 @@ const MenubarAdmin = () => {
     )
 }
 
-export default MenubarAdmin
+export default MenubarAdmin;

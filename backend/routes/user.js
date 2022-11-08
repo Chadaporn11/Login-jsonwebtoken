@@ -18,7 +18,7 @@ const { auth, adminCheck } = require('../middleware/auth');
 //End point http://localhost:4200/api/users
 //Method: GET
 //Access: public
-router.get('/users', listUsers);
+router.get('/users',auth, adminCheck, listUsers);
 
 //End point http://localhost:4200/api/users/:id
 //Method: GET
