@@ -51,3 +51,19 @@ exports.removeUsers = async (req, res) => {
         res.status(500).send("Server Error!");
     }
 };
+
+exports.changeStatus = async (req, res) => {
+    try {
+        // Check 
+        console.log(req.body);
+        const user = await User.findOneAndUpdate(
+            {_id:req.body.id},
+            {enabled: req.body.enabled}
+            );
+        res.send(user);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Server Error!");
+    }
+};
